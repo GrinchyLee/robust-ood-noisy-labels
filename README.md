@@ -1,1 +1,1 @@
-# robust-ood-noisy-labels
+# Robust Out-Of-Distribution Detection Under Noisy Labels
