@@ -36,7 +36,6 @@ transform_strong_compose = transforms.Compose(
         transforms.RandomCrop(64, padding=4),
         transforms.RandomHorizontalFlip(0.5),
         CIFAR10Policy(),
-        #ImageNetPolicy 대신 CIFAR10Policy 사용
         transforms.ToTensor(),
         transforms.Normalize((0.485, 0.456, 0.406),(0.229, 0.224, 0.225)),
     ]
@@ -62,7 +61,7 @@ class Tinyimagenet_dataset(Dataset):
         self.preaug_file = preaug_file
 
         if self.mode == "test":
-            test_txt = "/home/yujin/OpenOOD_baseline/data/benchmark_imglist/tinyimagenet/test_tin.txt"
+            test_txt = "test_tin.txt" # You need to change this path
             self.samples = []
 
             with open(test_txt, 'r') as f:
@@ -74,7 +73,7 @@ class Tinyimagenet_dataset(Dataset):
 
         else:
             # Clean labels
-            clean_txt = "/home/yujin/OpenOOD_baseline/data/benchmark_imglist/tinyimagenet/train_tin.txt"
+            clean_txt = "train_tin.txt" # You need to change this path
             self.samples = []
             with open(clean_txt, 'r') as f:
                 for line in f:
