@@ -1,0 +1,110 @@
+{   
+    "alpha": 4,
+    "average_loss": 0,
+    "batch_size": 128,
+    "checkpoint_path": "./checkpoints",
+    "learning_rate": 0.02,
+    "noise_mode": "cifarn",
+    "num_workers": 16,
+    "preaugment": false,
+    "save_every": 25,
+    "seed": 0,
+    "warmup_aug_probability": 1,
+    "warmup_batch_size": 128,
+    "T":0.5,
+    "configs": {
+        "c10": {
+            "dataset": "cifar10",
+            "num_class": 10,
+            "warm_up": 10,
+            "seed": 0,
+            "data_path": "./data/cifar-10",
+            "warmup_transform": "transform_weak_10",
+            "configs": {
+                "clean":{
+                    "r": 0.0,
+                    "lambda_u": 0,
+                    "average_loss": 0,
+                    "num_epochs": 150,
+                    "lr_switch_epoch": 75,
+                    "mt": 2,
+                    "md": 0.5
+                },
+                "aggre":{
+                    "r": 0.0901,
+                    "lambda_u": 0,
+                    "average_loss": 0,
+                    "num_epochs": 150,
+                    "lr_switch_epoch": 75,
+                    "mt": 2,
+                    "md": 0.5
+                },
+                "rand1":{
+                    "r": 0.172,
+                    "lambda_u": 0,
+                    "average_loss": 0,
+                    "num_epochs": 150,
+                    "lr_switch_epoch": 75,
+                    "mt": 2,
+                    "md": 0.5
+                },
+                "worse":{
+                    "r": 0.402,
+                    "lambda_u": 0,
+                    "average_loss": 0,
+                    "num_epochs": 150,
+                    "lr_switch_epoch": 75,
+                    "mt": 2,
+                    "md": 0.5
+                }
+            },
+            "labeled_transforms": [
+                "transform_strong_10",
+                "transform_strong_10",
+                "transform_weak_10",
+                "transform_weak_10"
+            ],
+            "unlabeled_transforms": [
+                "transform_strong_10",
+                "transform_strong_10",
+                "transform_weak_10",
+                "transform_weak_10"
+            ]
+        },
+        "c100": {
+            "dataset": "cifar100",
+            "num_epochs": 400,
+            "lr_switch_epoch": 300,
+            "num_class": 100,
+            "warm_up": 30,
+            "warmup_transform": "transform_weak_100",
+            "data_path": "data/cifar-100" ,
+            "configs": {
+                "clean": {
+                    "r": 0,
+                    "lambda_u": 25,
+                    "mt": 2,
+                    "md": 0.5
+                },
+                "worse": {
+                    "r": 0.402,
+                    "lambda_u": 25,
+                    "mt": 2,
+                    "md": 0.5
+                }
+            },
+            "labeled_transforms": [
+                "transform_strong_100",
+                "transform_strong_100",
+                "transform_weak_100",
+                "transform_weak_100"
+            ],
+            "unlabeled_transforms": [
+                "transform_strong_100",
+                "transform_strong_100",
+                "transform_weak_100",
+                "transform_weak_100"
+            ]
+        }
+    }
+}
