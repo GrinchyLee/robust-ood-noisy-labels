@@ -8,9 +8,10 @@ This repository contains implementations and evaluations of various noise label 
 ### 📁 Core Modules
 
 <div align="center">
-  <img src="images/core_modules.pdf" width="800" />
+  <img src="images/core_modules.png" width="800" />
   <p>Visualization of the core <b>Noisy Label Learning (NLL)</b> frameworks</p>
 </div>
+
 
 <details>
 <summary><b>📖 Overview of NLL Methods</b></summary>
@@ -121,7 +122,6 @@ Each method achieves state-of-the-art performance on various noisy label benchma
 
 <div align="center">
   <img src="images/result_table.png" width="900" />
-  <p><b>Performance comparison of NLL methods</b> on CIFAR-10N, CIFAR-100N and TinyImageNet with symmetric/asymmetric noises.</p>
 </div>
 
 
