@@ -28,9 +28,8 @@ import sys
 sys.path.append('openood')
 from openood.networks.resnet18_64x64 import ResNet18_64x64
 
-import dataloader_easy_tinyimagenet2
-from dataloader_tinyimagenet2 import Tinyimagenet_dataset
-import dataloader_tinyimagenet2 as dataloader
+import dataloader_easy_tinyimagenet
+from dataloader_tinyimagenet import Tinyimagenet_dataset, dataloader
 
 import wandb
 
