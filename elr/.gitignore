@@ -1,0 +1,6 @@
+__pycache__/
+data/
+wandb/
+save/
+scratch/
+ELR_TIN/
