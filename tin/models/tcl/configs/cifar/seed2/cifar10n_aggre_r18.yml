@@ -1,0 +1,32 @@
+batch_size: 256
+num_devices: 1
+
+wandb: true
+project_name: noise_label
+
+dataset: cifar10
+data_folder: /home/yujin/ProMix2/data
+label_file: /home/yujin/ProMix2/data/CIFAR-10_human.pt
+noise_type: aggre_label   # aggre_label / worse_label / random_label1 / random_label2 / random_label3
+
+resized_crop_scale: 0.2
+encoder_name: resnet18
+epochs: 200
+feat_dim: 256
+img_size: 32
+learning_rate: 0.03
+learning_eta_min: 0.01
+syncbn: true
+reassign: 1
+save_freq: 50
+save_checkpoints: true
+temp: 0.25
+use_gaussian_blur: false
+warmup_epochs: 20
+weight_decay: 0.001
+dist: false
+num_workers: 8
+sep_gmm: true
+model_name: tcl
+mixup_alpha: 1.0
+seed: 2

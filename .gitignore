@@ -1,0 +1,10 @@
+data/cifar-10/
+data/cifar-10-batches-py/
+data/cifar-100/
+data/cifar-100-python/
+data/cifar-10-python.tar.gz
+data/cifar-100-python.tar.gz
+**/__pycache__/
+**/*.pyc
+.DS_Store
+data/*.tar.gz
