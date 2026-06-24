@@ -6,9 +6,9 @@ project_name: noise_label
 entity: dmlab_yj
 
 dataset: tinyimagenet
-label_file: /home/yujin/robust-ood-noisy-labels-2/openood/data/benchmark_imglist/tinyimagenet
+data_folder: ../openood/data
 resized_crop_scale: 0.2
-label_file: /home/yujin/robust-ood-noisy-labels-2/openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.5.txt
+label_file: ../openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.5.txt
 encoder_name: resnet18_64x64
 epochs: 300
 feat_dim: 256
