@@ -12,23 +12,23 @@ Each module addresses label noise through different mechanisms, together forming
 #### 1. **ELR (Early-Learning Regularization)** - `elr/`
 - **ELR**: Implements Early Learning Regularization to prevent memorization of noisy labels without Mixup
 - **ELR+**: Advanced version with enhanced regularization with Mixup
-- **Paper**: S. Liu, J. Niles-Weed, N. Razavian, C. Fernandez-Granda, Early-learning regularization prevents memorization of noisy labels, in: Advances in Neural Information Processing Systems, volume 33, 2020, pp. 20331–20342. [[PDF]](images/ELR.pdf)
+- **Paper**: S. Liu, J. Niles-Weed, N. Razavian, C. Fernandez-Granda, Early-learning regularization prevents memorization of noisy labels, in: Advances in Neural Information Processing Systems, volume 33, 2020, pp. 20331–20342.
 
 #### 2. **SOP (Sparse Over-parameterization)** - `sop/`
 - **SOP**: Robust training via sparse over-parameterization to separate label noise
-- **Paper**: S. Liu, Z. Zhu, Q. Qu, C. You, Robust training under label noise by over-parameterization, in: Proceedings of the International Conference on Machine Learning, 2022, pp. 14153–14172. [[PDF]](images/SOP.pdf)
+- **Paper**: S. Liu, Z. Zhu, Q. Qu, C. You, Robust training under label noise by over-parameterization, in: Proceedings of the International Conference on Machine Learning, 2022, pp. 14153–14172.
 
 #### 3. **PGDF (Prior Guided Denoising Framework)** - `pgdf/`
 - **PGDF**: prior-guided instance selection and denoising semi-supervised learning
-- **Paper**: W. Chen, C. Zhu, M. Li, Sample prior guided robust model learning to suppress noisy labels, in: Proceedings of the Joint European Conference on Machine Learning and Knowledge Discovery in Databases, 2023, pp. 3–19. [[PDF]](images/PGDF.pdf)
+- **Paper**: W. Chen, C. Zhu, M. Li, Sample prior guided robust model learning to suppress noisy labels, in: Proceedings of the Joint European Conference on Machine Learning and Knowledge Discovery in Databases, 2023, pp. 3–19.
 
 #### 4. **ProMix** - `promix/`
 - **ProMix**: progressive instance selection and debiased semi-supervised learning
-- **Paper**: R. Xiao, Y. Dong, H. Wang, L. Feng, R. Wu, G. Chen, J. Zhao, ProMix: Combating label noise via maximizing clean sample utility, in: Proceedings of the International Joint Conference on Artificial Intelligence, 2023, pp. 4442–4450. [[PDF]](images/ProMix.pdf)
+- **Paper**: R. Xiao, Y. Dong, H. Wang, L. Feng, R. Wu, G. Chen, J. Zhao, ProMix: Combating label noise via maximizing clean sample utility, in: Proceedings of the International Joint Conference on Artificial Intelligence, 2023, pp. 4442–4450.
 
 #### 5. **TCL (Twin Contrastive Learning)** - `tin/`
 - **TCL**: Twin contrastive learning that models representations with a Gaussian mixture and detects wrongly labeled examples as out-of-distribution samples
-- **Paper**: Z. Huang, J. Zhang, H. Shan, Twin contrastive learning with noisy labels, in: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2023. [[PDF]](images/TCL.pdf)
+- **Paper**: Z. Huang, J. Zhang, H. Shan, Twin contrastive learning with noisy labels, in: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2023.
 
 #### 6. **OpenOOD** - `openood/`
 - **OpenOOD**: Comprehensive benchmarking framework for generalized OOD detection
