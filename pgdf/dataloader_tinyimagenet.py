@@ -54,14 +54,14 @@ transform_strong_randaugment_compose = transforms.Compose(
 
 
 class Tinyimagenet_dataset(Dataset):
-    def __init__(self,r,transform,mode,noise_mode,noise_file="",preaug_file="",pred=[],probability=[],dataset='imagenet200',root_dir="/home/yujin/OpenOOD_baseline/data/images_classic"):
+    def __init__(self,r,transform,mode,noise_mode,noise_file="",preaug_file="",pred=[],probability=[],dataset='imagenet200',root_dir="../openood/data/images_classic"):
         self.r = r
         self.transform = transform
         self.mode = mode
         self.preaug_file = preaug_file
 
         if self.mode == "test":
-            test_txt = "test_tin.txt" # You need to change this path
+            test_txt = "../openood/data/benchmark_imglist/tinyimagenet/test_tin.txt"
             self.samples = []
 
             with open(test_txt, 'r') as f:
@@ -73,7 +73,7 @@ class Tinyimagenet_dataset(Dataset):
 
         else:
             # Clean labels
-            clean_txt = "train_tin.txt" # You need to change this path
+            clean_txt = "../openood/data/benchmark_imglist/tinyimagenet/train_tin.txt"
             self.samples = []
             with open(clean_txt, 'r') as f:
                 for line in f:

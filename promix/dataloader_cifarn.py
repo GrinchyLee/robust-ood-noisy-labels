@@ -3,7 +3,6 @@ import torch
 import copy
 import random
 import json
-from data.utils import download_url, check_integrity
 from utils.randaug import *
 from torch.utils.data import Dataset, DataLoader
 import torchvision.transforms as transforms
@@ -52,7 +51,7 @@ class cifarn_dataset(Dataset):
                 self.test_data = self.test_data.transpose((0, 2, 3, 1))
                 self.test_label = test_dic['fine_labels']
             elif dataset == 'cifar20':
-                test_dic = unpickle("/home/yujin/ProMix2/data/cifar-100/test")
+                test_dic = unpickle("../data/cifar-100/test")
                 self.test_data = test_dic['data']
                 self.test_data = self.test_data.reshape((10000, 3, 32, 32))
                 self.test_data = self.test_data.transpose((0, 2, 3, 1))
@@ -72,9 +71,9 @@ class cifarn_dataset(Dataset):
                 train_data = train_dic['data']
                 train_label = train_dic['fine_labels']
             elif dataset == 'cifar20':
-                train_dic = unpickle("/home/yujin/ProMix2/data/cifar-100/train")
+                train_dic = unpickle("../data/cifar-100/train")
                 train_data = train_dic['data']
-                train_label = torch.load("/home/yujin/ProMix2/data/CIFAR-100_human.pt")['clean_coarse_label']
+                train_label = torch.load("../data/CIFAR-100_human.pt")['clean_coarse_label']
             train_data = train_data.reshape((50000, 3, 32, 32))
             train_data = train_data.transpose((0, 2, 3, 1))
             self.train_labels = train_label

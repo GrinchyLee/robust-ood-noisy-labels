@@ -17,7 +17,7 @@ def get_TIN(root, cfg_trainer, train=True,
                     download=False, noise_file=''):
     
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    txt_dir = os.path.join(current_dir, '..', 'data', 'benchmark_imglist', 'tinyimagenet')
+    txt_dir = os.path.join(current_dir, '..', '..', 'openood', 'data', 'benchmark_imglist', 'tinyimagenet')
     txt_dir = os.path.normpath(txt_dir) 
     test_txt = os.path.join(txt_dir, 'test_tin.txt')
     

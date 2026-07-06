@@ -7,43 +7,30 @@ This repository contains implementations and evaluations of various noise label 
 
 ### 📁 Core Modules
 
-<div align="center">
-  <img src="images/core_modules.png" width="800" />
-  <p>Visualization of the core <b>Noisy Label Learning (NLL)</b> frameworks</p>
-</div>
-
-
-<details>
-<summary><b>📖 Overview of NLL Methods</b></summary>
-Each module addresses label noise through different mechanisms:
-
-- **(a) SOP**: Instance-wise noise modeling via sparse over-parameterization
-- **(b) ELR**: Early-learning regularization to prevent noise memorization  
-- **(c) ProMix**: Progressive instance selection and debiased semi-supervised learning
-- **(d) PGDF**: Prior-guided instance selection and denoising semi-supervised learning
-
-Together, these architectures form the backbone of our proposed framework for **robust OOD detection under noisy labels**.
-</details>
-
+Each module addresses label noise through different mechanisms, together forming the backbone of our framework for **robust OOD detection under noisy labels**.
 
 #### 1. **ELR (Early-Learning Regularization)** - `elr/`
 - **ELR**: Implements Early Learning Regularization to prevent memorization of noisy labels without Mixup
 - **ELR+**: Advanced version with enhanced regularization with Mixup
-- **Papers**: S. Liu, J. Niles-Weed, N. Razavian, C. Fernandez-Granda, Early-learning regularization prevents memorization of noisy labels, in: Advances in Neural Information Processing Systems, volume 33, 2020, pp. 20331–20342.
+- **Paper**: S. Liu, J. Niles-Weed, N. Razavian, C. Fernandez-Granda, Early-learning regularization prevents memorization of noisy labels, in: Advances in Neural Information Processing Systems, volume 33, 2020, pp. 20331–20342. [[PDF]](images/ELR.pdf)
 
 #### 2. **SOP (Sparse Over-parameterization)** - `sop/`
 - **SOP**: Robust training via sparse over-parameterization to separate label noise
-- **Paper**: S. Liu, Z. Zhu, Q. Qu, C. You, Robust training under label noise by over-parameterization, in: Proceedings of the International Conference on Machine Learning, 2022, pp. 14153–14172.
+- **Paper**: S. Liu, Z. Zhu, Q. Qu, C. You, Robust training under label noise by over-parameterization, in: Proceedings of the International Conference on Machine Learning, 2022, pp. 14153–14172. [[PDF]](images/SOP.pdf)
 
 #### 3. **PGDF (Prior Guided Denoising Framework)** - `pgdf/`
 - **PGDF**: prior-guided instance selection and denoising semi-supervised learning
-- **Paper**: W. Chen, C. Zhu, M. Li, Sample prior guided robust model learning to suppress noisy labels, in: Proceedings of the Joint European Conference on Machine Learning and Knowledge Discovery in Databases, 2023, pp. 3–19.
+- **Paper**: W. Chen, C. Zhu, M. Li, Sample prior guided robust model learning to suppress noisy labels, in: Proceedings of the Joint European Conference on Machine Learning and Knowledge Discovery in Databases, 2023, pp. 3–19. [[PDF]](images/PGDF.pdf)
 
 #### 4. **ProMix** - `promix/`
 - **ProMix**: progressive instance selection and debiased semi-supervised learning
-- **Paper**: R. Xiao, Y. Dong, H. Wang, L. Feng, R. Wu, G. Chen, J. Zhao, ProMix: Combating label noise via maximizing clean sample utility, in: Proceedings of the International Joint Conference on Artificial Intelligence, 2023, pp. 4442–4450.
+- **Paper**: R. Xiao, Y. Dong, H. Wang, L. Feng, R. Wu, G. Chen, J. Zhao, ProMix: Combating label noise via maximizing clean sample utility, in: Proceedings of the International Joint Conference on Artificial Intelligence, 2023, pp. 4442–4450. [[PDF]](images/ProMix.pdf)
 
-#### 5. **OpenOOD** - `openood/`
+#### 5. **TCL (Twin Contrastive Learning)** - `tin/`
+- **TCL**: Twin contrastive learning that models representations with a Gaussian mixture and detects wrongly labeled examples as out-of-distribution samples
+- **Paper**: Z. Huang, J. Zhang, H. Shan, Twin contrastive learning with noisy labels, in: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2023. [[PDF]](images/TCL.pdf)
+
+#### 6. **OpenOOD** - `openood/`
 - **OpenOOD**: Comprehensive benchmarking framework for generalized OOD detection
 - **Paper**: J. Zhang, J. Yang, P. Wang, H. Wang, Y. Lin, H. Zhang, Y. Sun, X. Du, Y. Li, Z. Liu, Y. Chen, H. Li, OpenOOD v1.5: Enhanced benchmark for out-of-distribution detection, Data-Centric Machine Learning Research 2 (2024) 3.
 
@@ -60,6 +47,7 @@ Each module has its own requirements. Please refer to individual module document
 - **SOP**: https://github.com/shengliu66/SOP
 - **PGDF**: https://github.com/bupt-ai-cz/PGDF
 - **ProMix**: https://github.com/Justherozen/ProMix
+- **TCL**: https://github.com/Hzzone/TCL
 
 
 ### Example Usage
@@ -96,6 +84,13 @@ python experiments/Train_cifar_prop1_energyO_mixupX.py \
     --noise_type aggre --cosine --dataset cifar10 --num_class 10 \
     --rho_range 0.5,0.5 --tau 0.99 --pretrain_ep 10 \
     --noise_mode cifarn --num_epochs 300 --seed 0
+```
+
+#### Running TCL on CIFAR-10N with Aggregate noisy scenarios
+
+```bash
+cd tin
+python main.py models/tcl/configs/cifar/seed0/cifar10n_aggre_r18.yml
 ```
 
 ## 📊 Supported Datasets and OOD Detection Methods
@@ -160,6 +155,13 @@ If you use this code in your research, please cite the relevant papers:
   author={Xiao, Ruixuan and Dong, Yiwen and Wang, Haobo and Feng, Lei and Wu, Runze and Chen, Gang and Zhao, Junbo},
   booktitle={Proceedings of the International Joint Conference on Artificial Intelligence},
   pages={4442--4450},
+  year={2023}
+}
+
+@inproceedings{huang2023twin,
+  title={Twin Contrastive Learning with Noisy Labels},
+  author={Huang, Zhizhong and Zhang, Junping and Shan, Hongming},
+  booktitle={CVPR},
   year={2023}
 }
 

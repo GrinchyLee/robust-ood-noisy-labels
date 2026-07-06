@@ -20,7 +20,7 @@ class TIN_Dataset(Dataset):
         self.r=r
         idx_each_class_noisy = [[] for i in range(200)]
         if mode == 'test':
-            test_txt = "/home/yujin/OpenOOD_baseline/data/benchmark_imglist/tinyimagenet/test_tin.txt"
+            test_txt = "../openood/data/benchmark_imglist/tinyimagenet/test_tin.txt"
 
             self.samples = []
             with open(test_txt, 'r') as f:
@@ -42,7 +42,7 @@ class TIN_Dataset(Dataset):
             train_data = self.train_data 
             noise_label = self.train_noisy_labels
             
-            clean_txt = "/home/yujin/OpenOOD_baseline/data/benchmark_imglist/tinyimagenet/train_tin.txt"
+            clean_txt = "../openood/data/benchmark_imglist/tinyimagenet/train_tin.txt"
 
             # 2. 정답 레이블 로딩
             self.train_labels = []

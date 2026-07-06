@@ -13,7 +13,7 @@
     "data_loader": {
         "type": "TINDataloader",
         "args":{
-            "data_dir": "/home/dm/Leeyujin/OpenOOD/data/images_classic",
+            "data_dir": "../../openood/data/images_classic",
             "batch_size": 128,
             "shuffle": true,
             "num_batches": 0,
@@ -57,10 +57,10 @@
     "trainer": {
         "epochs": 300,
         "warmup": 0,
-        "save_dir": "/home/dm/Leeyujin/ELR/ELR/save/seed0",
+        "save_dir": "save/seed0",
         "save_period": 1,
         "verbosity": 2,
-        "label_dir": "/home/dm/Leeyujin/ELR/ELR/save/seed0",       
+        "label_dir": "save/seed0",
         "monitor": "max val_my_metric",
         "early_stop": 2000,
         "tensorboard": false,

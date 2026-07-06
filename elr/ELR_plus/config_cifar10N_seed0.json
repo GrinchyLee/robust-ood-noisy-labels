@@ -28,7 +28,7 @@
     "data_loader": {
         "type": "CIFAR10DataLoader",
         "args":{
-            "data_dir":"/home/yujin/ELR/ELR/data",
+            "data_dir":"data",
             "batch_size": 128,
             "batch_size2": 128,
             "num_batches": 0,
@@ -84,10 +84,10 @@
     "trainer": {
         "epochs": 200,
         "warmup": 0,
-        "save_dir": "/home/yujin/ELR/ELR_plus/save/seed0",
+        "save_dir": "save/seed0",
         "save_period": 1,
         "verbosity": 2,
-        "label_dir": "/home/yujin/ELR/ELR_plus/save/seed0",
+        "label_dir": "save/seed0",
         
         "monitor": "max val_my_metric",
         "early_stop": 2000,

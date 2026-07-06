@@ -18,7 +18,7 @@ import os
 import sys
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-openood_root = os.path.abspath(os.path.join(current_dir, '..'))
+openood_root = os.path.abspath(os.path.join(current_dir, '..', 'openood'))
 sys.path.append(openood_root)
 from openood.networks.resnet18_64x64 import ResNet18_64x64
 

@@ -6,7 +6,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn import Parameter
 import sys
-sys.path.append('/home/yujin/OpenOOD_baseline')
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'openood')))
 from openood.networks.resnet18_32x32 import ResNet18_32x32
 from openood.networks.resnet18_64x64 import ResNet18_64x64
 

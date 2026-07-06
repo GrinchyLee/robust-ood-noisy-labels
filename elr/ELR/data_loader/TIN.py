@@ -17,7 +17,7 @@ def get_TIN(root, cfg_trainer, train=True,
                     transform_train=None, transform_train_aug=None, transform_val=None,
                     download=False, noise_file=''):
     
-    txt_dir = "/home/dm/Leeyujin/OpenOOD/data/benchmark_imglist/tinyimagenet"
+    txt_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', 'openood', 'data', 'benchmark_imglist', 'tinyimagenet'))
     test_txt = os.path.join(txt_dir, 'test_tin.txt')
     
     if train:

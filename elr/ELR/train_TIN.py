@@ -14,7 +14,8 @@ from collections import OrderedDict
 import random
 
 import sys
-sys.path.append('openood') # add the path to the openood library
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'openood')))
 from openood.networks.resnet18_64x64 import ResNet18_64x64
 import wandb
 

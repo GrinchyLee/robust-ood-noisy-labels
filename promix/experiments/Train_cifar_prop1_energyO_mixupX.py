@@ -659,9 +659,11 @@ for epoch in range(args.num_epochs + 1):
 
         pi1,pi2,pi1_unrel,pi2_unrel = train(epoch,dualnet.net1, dualnet.net2, optimizer1, total_trainloader,pi1,pi2,pi1_unrel,pi2_unrel) 
     test_acc = test(epoch, dualnet.net1, dualnet.net2)
+    if (epoch == 1) or (epoch == 300):
+        os.makedirs(f"./save/sharpening_modify/seed{args.seed}", exist_ok=True)
     if (epoch == 1):
-        torch.save(dualnet,f"/home/yujin/ProMix2/save/sharpening_modify/seed{args.seed}/no_mixup_standardenergy0.001_{args.dataset}_{args.noise_type}_{args.seed}_{args.rho_range}_{args.num_epochs}_test.pth.tar")
+        torch.save(dualnet,f"./save/sharpening_modify/seed{args.seed}/no_mixup_standardenergy0.001_{args.dataset}_{args.noise_type}_{args.seed}_{args.rho_range}_{args.num_epochs}_test.pth.tar")
     if (epoch == 300):
-        torch.save(dualnet,f"/home/yujin/ProMix2/save/sharpening_modify/seed{args.seed}/no_mixup_standardenergy0.001_{args.dataset}_{args.noise_type}_{args.seed}_{args.rho_range}_{args.num_epochs}_epoch_300_model.pth.tar")
+        torch.save(dualnet,f"./save/sharpening_modify/seed{args.seed}/no_mixup_standardenergy0.001_{args.dataset}_{args.noise_type}_{args.seed}_{args.rho_range}_{args.num_epochs}_epoch_300_model.pth.tar")
     wandb.log({"Accuracy": test_acc})
 

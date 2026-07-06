@@ -5,6 +5,7 @@ filterwarnings("ignore")
 import os
 import random
 import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # pgdf/ root, for sibling modules like dataset_his, PreResNet
 from tqdm import tqdm
 import numpy as np
 import torch
@@ -27,7 +28,7 @@ from preset_parser import *
 import pickle
 
 import sys
-sys.path.append('openood')
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'openood')))
 from openood.networks.resnet18_64x64 import ResNet18_64x64
 
 import dataloader_easy_tinyimagenet

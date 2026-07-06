@@ -5,8 +5,8 @@ wandb: true
 project_name: noise_label
 
 dataset: cifar10
-data_folder: /home/yujin/ProMix2/data
-label_file: /home/yujin/ProMix2/data/CIFAR-10_human.pt
+data_folder: ../data
+label_file: ../data/CIFAR-10_human.pt
 noise_type: aggre_label   # aggre_label / worse_label / random_label1 / random_label2 / random_label3
 
 resized_crop_scale: 0.2

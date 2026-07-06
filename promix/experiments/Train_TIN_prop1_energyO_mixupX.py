@@ -33,7 +33,7 @@ parser.add_argument('--num_epochs', default=600, type=int)
 parser.add_argument('--seed', default=123)
 parser.add_argument('--gpuid', default=0, type=int)
 parser.add_argument('--num_class', default=100, type=int)
-parser.add_argument('--data_path', default="/home/yujin/OpenOOD_baseline/data", type=str, help='path to dataset')
+parser.add_argument('--data_path', default="../openood/data", type=str, help='path to dataset')
 parser.add_argument('--dataset', default='cifar10', type=str)
 parser.add_argument('--is_human', action='store_true', default=False)
 parser.add_argument('--rho_range', default='0.2,0.6', type=str,
@@ -656,16 +656,18 @@ for epoch in range(args.num_epochs + 1):
         total_trainloader, noisy_labels = loader.run('train', pred1, prob1, prob2)  # co-divide
         pi1,pi2,pi1_unrel,pi2_unrel = train(epoch,dualnet.net1, dualnet.net2, optimizer1, total_trainloader,pi1,pi2,pi1_unrel,pi2_unrel) 
     test_acc = test(epoch, dualnet.net1, dualnet.net2)
+    if epoch in (1, 150, 200, 250, 300):
+        os.makedirs(f"./save/seed{args.seed}", exist_ok=True)
     if epoch == 1:
-        torch.save(dualnet,f"/home/yujin/ProMix2/save/seed{args.seed}/no_mixup_energy0.01_{args.dataset}_{args.noise_mode}_{args.seed}_{args.rho_range}_{args.num_epochs}_test.tar")
+        torch.save(dualnet,f"./save/seed{args.seed}/no_mixup_energy0.01_{args.dataset}_{args.noise_mode}_{args.seed}_{args.rho_range}_{args.num_epochs}_test.tar")
     if (epoch == 150):
-        torch.save(dualnet,f"/home/yujin/ProMix2/save/seed{args.seed}/no_mixup_energy0.01_{args.dataset}_{args.noise_mode}_{args.seed}_{args.rho_range}_{args.num_epochs}_epoch_150_model.pth.tar")
+        torch.save(dualnet,f"./save/seed{args.seed}/no_mixup_energy0.01_{args.dataset}_{args.noise_mode}_{args.seed}_{args.rho_range}_{args.num_epochs}_epoch_150_model.pth.tar")
     if (epoch == 200):
-        torch.save(dualnet,f"/home/yujin/ProMix2/save/seed{args.seed}/no_mixup_energy0.01_{args.dataset}_{args.noise_mode}_{args.seed}_{args.rho_range}_{args.num_epochs}_epoch_200_model.pth.tar")
+        torch.save(dualnet,f"./save/seed{args.seed}/no_mixup_energy0.01_{args.dataset}_{args.noise_mode}_{args.seed}_{args.rho_range}_{args.num_epochs}_epoch_200_model.pth.tar")
     if (epoch == 250):
-        torch.save(dualnet,f"/home/yujin/ProMix2/save/seed{args.seed}/no_mixup_energy0.01_{args.dataset}_{args.noise_mode}_{args.seed}_{args.rho_range}_{args.num_epochs}_epoch_250_model.pth.tar")
+        torch.save(dualnet,f"./save/seed{args.seed}/no_mixup_energy0.01_{args.dataset}_{args.noise_mode}_{args.seed}_{args.rho_range}_{args.num_epochs}_epoch_250_model.pth.tar")
     if (epoch == 300):
-        torch.save(dualnet,f"/home/yujin/ProMix2/save/seed{args.seed}/no_mixup_energy0.01_{args.dataset}_{args.noise_mode}_{args.seed}_{args.rho_range}_{args.num_epochs}_epoch_300_model.pth.tar")
+        torch.save(dualnet,f"./save/seed{args.seed}/no_mixup_energy0.01_{args.dataset}_{args.noise_mode}_{args.seed}_{args.rho_range}_{args.num_epochs}_epoch_300_model.pth.tar")
     wandb.log({"Accuracy": test_acc})
     
     elapsed_time = time.time() - start_time

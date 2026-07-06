@@ -17,7 +17,8 @@ import random
 
 
 import sys
-sys.path.append('openood') # add the path to the openood library
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'openood')))
 from openood.networks.resnet18_32x32 import ResNet18_32x32
 import wandb
 

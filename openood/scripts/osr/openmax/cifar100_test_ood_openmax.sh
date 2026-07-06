@@ -16,7 +16,7 @@ python main.py \
     configs/preprocessors/base_preprocessor.yml \
     configs/postprocessors/openmax.yml \
     --num_workers 8 \
-    --network.checkpoint '/home/yujin/ELR/ELR/save/seed0/models/cifar100_resnet18_sym_0_fine/300_beta_0.9_lambda_3.0_0/model_best.pth' \
+    --network.checkpoint '../elr/ELR/save/seed0/models/cifar100_resnet18_sym_0_fine/300_beta_0.9_lambda_3.0_0/model_best.pth' \
     --mark 0
 
 ############################################
