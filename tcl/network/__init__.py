@@ -9,15 +9,18 @@
 '''
 
 import sys
+import os
 import torch.nn as nn
 import torch.nn.functional as F
 
 from . import resnet, preact_resnet
 
-sys.path.append('/home/yujin/OpenOOD_baseline')
-from openood.networks.resnet18_32x32 import ResNet18_32x32
+_openood_path = os.path.join(os.path.dirname(__file__), '..', '..', 'openood')
+_openood_path = os.path.abspath(_openood_path)
+if _openood_path not in sys.path:
+    sys.path.insert(0, _openood_path)
 
-sys.path.append('/home/yujin/OpenOOD_noisy')
+from openood.networks.resnet18_32x32 import ResNet18_32x32
 from openood.networks.resnet18_64x64 import ResNet18_64x64
 
 

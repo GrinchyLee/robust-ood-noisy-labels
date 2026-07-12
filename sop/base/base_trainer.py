@@ -15,14 +15,15 @@ class BaseTrainer:
         self.config = config
         self.logger = config.get_logger('trainer', config['trainer']['verbosity'])
 
-        if config['comet']['api'] is not None:
+        comet_cfg = config.config.get('comet', {})
+        if comet_cfg.get('api') is not None:
             self.writer = CometWriter(
                 self.logger,
-                project_name = config['comet']['project_name'],
+                project_name = comet_cfg['project_name'],
                 experiment_name = config['name'],
-                api_key = config['comet']['api'],
+                api_key = comet_cfg['api'],
                 log_dir = config.log_dir,
-                offline = config['comet']['offline'])
+                offline = comet_cfg['offline'])
         else:
             self.writer = None
 

@@ -14,10 +14,21 @@ from numpy.testing import assert_array_almost_equal
 
 
 
+def cifar100n(root, key):
+    label_path = os.path.join(root, 'CIFAR-100_human.pt')
+    if not os.path.exists(label_path):
+        raise FileNotFoundError(
+            f'CIFAR-100N labels not found at {label_path}. '
+            f'Download CIFAR-100_human.pt from https://github.com/UCSC-REAL/cifar-10-100n '
+            f'and place it under {root}.')
+    noise_label = torch.load(label_path, weights_only=False)
+    return np.asarray(noise_label[key])
+
+
 def get_cifar100(root, cfg_trainer, train=True,
                 transform_train=None, transform_val=None,
-                download=True, noise_file = ''):
-    base_dataset = torchvision.datasets.CIFAR100(root, train=train, download=True)
+                download=False, noise_file = ''):
+    base_dataset = torchvision.datasets.CIFAR100(root, train=train, download=download)
     if train:
         train_idxs, val_idxs = train_val_split(base_dataset.targets)
         train_dataset = CIFAR100_train(root, cfg_trainer, train_idxs, train=True, transform=transform_train)
@@ -28,6 +39,10 @@ def get_cifar100(root, cfg_trainer, train=True,
         elif cfg_trainer['instance']:
             train_dataset.instance_noise()
             val_dataset.instance_noise()
+        elif cfg_trainer.get('real'):
+            new_targets = cifar100n(root, cfg_trainer['real'])
+            train_dataset.train_labels = new_targets[train_dataset.indexs]
+            val_dataset.train_labels = new_targets[val_dataset.indexs]
         else:
             train_dataset.symmetric_noise()
             val_dataset.symmetric_noise()

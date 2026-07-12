@@ -51,7 +51,7 @@ class cifarn_dataset(Dataset):
                 self.test_data = self.test_data.transpose((0, 2, 3, 1))
                 self.test_label = test_dic['fine_labels']
             elif dataset == 'cifar20':
-                test_dic = unpickle("../data/cifar-100/test")
+                test_dic = unpickle("../CIFAR-10N_100N/cifar-100-python/test")
                 self.test_data = test_dic['data']
                 self.test_data = self.test_data.reshape((10000, 3, 32, 32))
                 self.test_data = self.test_data.transpose((0, 2, 3, 1))
@@ -71,9 +71,9 @@ class cifarn_dataset(Dataset):
                 train_data = train_dic['data']
                 train_label = train_dic['fine_labels']
             elif dataset == 'cifar20':
-                train_dic = unpickle("../data/cifar-100/train")
+                train_dic = unpickle("../CIFAR-10N_100N/cifar-100-python/train")
                 train_data = train_dic['data']
-                train_label = torch.load("../data/CIFAR-100_human.pt")['clean_coarse_label']
+                train_label = torch.load("../CIFAR-10N_100N/CIFAR-100_human.pt", weights_only=False)['clean_coarse_label']
             train_data = train_data.reshape((50000, 3, 32, 32))
             train_data = train_data.transpose((0, 2, 3, 1))
             self.train_labels = train_label
@@ -157,7 +157,7 @@ class cifarn_dataset(Dataset):
 
     def load_label(self):
         # NOTE only load manual training label
-        noise_label = torch.load(self.noise_path)
+        noise_label = torch.load(self.noise_path, weights_only=False)
         if isinstance(noise_label, dict):
             if "clean_label" in noise_label.keys():
                 clean_label = torch.tensor(noise_label['clean_label'])

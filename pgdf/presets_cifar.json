@@ -18,7 +18,7 @@
             "num_class": 10,
             "warm_up": 10,
             "seed": 0,
-            "data_path": "./data/cifar-10",
+            "data_path": "../CIFAR-10N_100N/cifar-10-batches-py",
             "warmup_transform": "transform_weak_10",
             "configs": {
                 "clean":{
@@ -78,7 +78,7 @@
             "num_class": 100,
             "warm_up": 30,
             "warmup_transform": "transform_weak_100",
-            "data_path": "data/cifar-100" ,
+            "data_path": "../CIFAR-10N_100N/cifar-100-python" ,
             "configs": {
                 "clean": {
                     "r": 0,

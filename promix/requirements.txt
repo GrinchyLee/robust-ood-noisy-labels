@@ -9,3 +9,4 @@ torchfile==0.1.0
 torchnet==0.0.4
 torchvision==0.9.1+cu111
 Pillow==6.2.0
+wandb

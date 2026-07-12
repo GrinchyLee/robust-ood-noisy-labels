@@ -36,8 +36,7 @@ from dataloader_cifarn import cifar_dataset
 import dataloader_cifarn as dataloader
 
 if __name__ == "__main__":
-    # args = parse_args("./presets_energy_seed0.json")
-    args = parse_args(".presets.json")
+    args = parse_args("presets_prop1_seed0.json")
     os.makedirs(os.path.join(args.checkpoint_path, "saved", str(args.seed)), exist_ok=True)
     logs = open(os.path.join(args.checkpoint_path, "saved", str(args.seed),"metrics.log"), "a")
 

@@ -33,7 +33,7 @@
     "data_loader": {
         "type": "CIFAR10DataLoader",
         "args":{
-            "data_dir": "data",
+            "data_dir": "../CIFAR-10N_100N",
             "batch_size": 128,
             "shuffle": true,
             "num_batches": 0,
@@ -115,8 +115,8 @@
         "_asym": "symmetric noise if false",
         "asym": false,
         "_instance": "symmetric noise if false",
-        "instance": true,
-        "_real": "real noise type",
-        "real": null
+        "instance": false,
+        "_real": "CIFAR-10N human label key (clean_label/aggre_label/worse_label/random_label1/2/3)",
+        "real": "aggre_label"
     }
 }

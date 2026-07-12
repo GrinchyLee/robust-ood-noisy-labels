@@ -49,7 +49,7 @@ if __name__ == '__main__':
     dataset_name = 'cifar10'
     # dataset_name = 'cifar100'
     datasets = {'cifar10': torchvision.datasets.CIFAR10, 'cifar100': torchvision.datasets.CIFAR100}
-    dataset = datasets[dataset_name]('/home/zzhuang/DATASET/clustering', train=True)
+    dataset = datasets[dataset_name]('./data', train=True)
     targets = np.asarray(dataset.targets)
     # for noise_rate in [0.2, 0.5, 0.8, 0.9]:
     #     noisy_labels = random_in_noise(targets, noise_ratio=noise_rate)

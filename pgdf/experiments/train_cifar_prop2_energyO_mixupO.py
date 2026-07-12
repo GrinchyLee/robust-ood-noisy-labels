@@ -35,7 +35,7 @@ import dataloader_cifarn as dataloader
 import wandb
 
 if __name__ == "__main__":
-    args = parse_args("./presets_energy_seed0_modified0.001.json")
+    args = parse_args("presets_prop2_seed0.json")
     os.makedirs(os.path.join(args.checkpoint_path, "saved", str(args.seed)), exist_ok=True)
     logs = open(os.path.join(args.checkpoint_path, "saved", str(args.seed), "metrics.log"), "a")
     

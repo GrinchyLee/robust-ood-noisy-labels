@@ -82,17 +82,17 @@ wandb.init(
 # please change it to your own datapath
 if args.data_path is None:
     if args.dataset == 'cifar10':
-        args.data_path = './data/cifar-10'
+        args.data_path = '../CIFAR-10N_100N/cifar-10-batches-py'
     elif args.dataset == 'cifar100':
-        args.data_path = './data/cifar-100'
+        args.data_path = '../CIFAR-10N_100N/cifar-100-python'
     else:
         pass
 # please change it to your own datapath for CIFAR-N
 if args.noise_path is None:
     if args.dataset == 'cifar10':
-        args.noise_path = './data/CIFAR-10_human.pt'
+        args.noise_path = '../CIFAR-10N_100N/CIFAR-10_human.pt'
     elif args.dataset == 'cifar100':
-        args.noise_path = './data/CIFAR-100_human.pt'
+        args.noise_path = '../CIFAR-10N_100N/CIFAR-100_human.pt'
     else:
         pass
 
@@ -598,6 +598,7 @@ def create_model():
     return model
 
 
+os.makedirs('./checkpoint', exist_ok=True)
 stats_log = open('./checkpoint/%s_%s_%s' % (args.dataset, args.noise_type, args.num_epochs) + '_stats.txt', 'w')
 test_log = open('./checkpoint/%s_%s_%s' % (args.dataset, args.noise_type, args.num_epochs) + '_acc.txt', 'w')
 

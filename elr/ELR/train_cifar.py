@@ -127,6 +127,8 @@ if __name__ == '__main__':
         CustomArgs(['--beta', '--beta'], type=float, target=('train_loss', 'args', 'beta')),
         CustomArgs(['--percent', '--percent'], type=float, target=('trainer', 'percent')),
         CustomArgs(['--asym', '--asym'], type=bool, target=('trainer', 'asym')),
+        CustomArgs(['--instance', '--instance'], type=bool, target=('trainer', 'instance')),
+        CustomArgs(['--real', '--real'], type=str, target=('trainer', 'real')),
         CustomArgs(['--name', '--exp_name'], type=str, target=('name',)),
         CustomArgs(['--seed', '--seed'], type=int, target=('seed',))
     ]

@@ -1,0 +1,8 @@
+torchvision
+requests
+tqdm
+torch
+numpy
+Pillow
+scikit_learn
+wandb

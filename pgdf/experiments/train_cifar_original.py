@@ -36,7 +36,7 @@ import dataloader_cifarn as dataloader
 import wandb
 
 if __name__ == "__main__":
-    args = parse_args("./presets.json")
+    args = parse_args("presets_ori_seed0.json")
 
     logs = open(os.path.join(args.checkpoint_path, "saved", str(args.seed), "metrics.log"), "a")
     wandb.init(

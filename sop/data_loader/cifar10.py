@@ -11,6 +11,17 @@ import random
 import json
 import os
 
+def cifar10n(root, key):
+    label_path = os.path.join(root, 'CIFAR-10_human.pt')
+    if not os.path.exists(label_path):
+        raise FileNotFoundError(
+            f'CIFAR-10N labels not found at {label_path}. '
+            f'Download CIFAR-10_human.pt from https://github.com/UCSC-REAL/cifar-10-100n '
+            f'and place it under {root}.')
+    noise_label = torch.load(label_path, weights_only=False)
+    return np.asarray(noise_label[key])
+
+
 def get_cifar10(root, cfg_trainer, train=True,
                 transform_train=None, transform_train_aug=None, transform_val=None,
                 download=False, noise_file = ''):
@@ -25,6 +36,10 @@ def get_cifar10(root, cfg_trainer, train=True,
         elif cfg_trainer['instance']:
             train_dataset.instance_noise()
             val_dataset.instance_noise()
+        elif cfg_trainer.get('real'):
+            new_targets = cifar10n(root, cfg_trainer['real'])
+            train_dataset.train_labels = new_targets[train_dataset.indexs]
+            val_dataset.train_labels = new_targets[val_dataset.indexs]
         else:
             train_dataset.symmetric_noise()
             val_dataset.symmetric_noise()

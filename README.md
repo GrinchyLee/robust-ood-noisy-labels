@@ -44,7 +44,7 @@ Each module addresses label noise through different mechanisms, together forming
 
 ### Installation
 
-Each module has its own requirements. Please refer to individual module documentation for specific setup instructions, hyperparameters, and configurations.
+Each module has its own `requirements.txt` (e.g. `pip install -r elr/requirements.txt`). All modules log to [Weights & Biases](https://wandb.ai); run `wandb login` once, or set `WANDB_MODE=offline` before training to disable cloud syncing.
 
 **Original Repository Links:**
 - **ELR**: https://github.com/shengliu66/ELR
@@ -53,6 +53,7 @@ Each module has its own requirements. Please refer to individual module document
 - **ProMix**: https://github.com/Justherozen/ProMix
 - **TCL**: https://github.com/Hzzone/TCL
 
+Before running any of the examples below, set up the datasets as described in [Supported Datasets and OOD Detection Methods](#-supported-datasets-and-ood-detection-methods).
 
 ### Example Usage
 
@@ -60,7 +61,7 @@ Each module has its own requirements. Please refer to individual module document
 
 ```bash
 cd elr/ELR
-python train_cifar.py -c config_cifar10N_cosinewarming_seed0.json --seed 0 --beta 0.7 --lamb 3 --percent 9.0
+python train_cifar.py -c config_cifar10N_cosinewarming_seed0.json --seed 0 --beta 0.7 --lamb 3
 ```
 
 #### Running SOP on CIFAR-10N with Aggregate noisy scenarios
@@ -74,9 +75,7 @@ python train_cifar.py -c config_cifar10N.json --lr_u 10 --lr_v 10 --percent 9.0 
 
 ```bash
 cd pgdf
-# First, prior-guided instance selection 
 python experiments/train_cifar_getPrior_cifar.py --preset c10.aggre
-# Then, denoising semi-supervised learning
 python experiments/train_cifar_prop1_energyO_mixupX.py --preset c10.aggre
 ```
 
@@ -103,6 +102,14 @@ python main.py models/tcl/configs/seed0/cifar10n_aggre_r18.yml
 - **CIFAR-N** - Real-world human annotated noisy labels from CIFAR-10/100
   - CIFAR-10N: Clean, Aggregate, Random1, Worst
   - CIFAR-100N: Clean, Noisy
+  - The human-annotated noisy labels are from the official [CIFAR-10N/100N repository](https://github.com/UCSC-REAL/cifar-10-100n), with per-scenario labels (`CIFAR-10_human.pt`, `CIFAR-100_human.pt`) placed together with the CIFAR-10/100 data under `CIFAR-10N_100N/` at the repository root:
+    ```
+    CIFAR-10N_100N/
+    ├── cifar-10-batches-py/
+    ├── cifar-100-python/
+    ├── CIFAR-10_human.pt
+    └── CIFAR-100_human.pt
+    ```
 - **Tiny-ImageNet** - Dataset with generated symmetric/asymmetric label noises
   - Dataset construction:
     - The downloaded Tiny-ImageNet comes with class labels.
@@ -110,7 +117,11 @@ python main.py models/tcl/configs/seed0/cifar10n_aggre_r18.yml
     - Following OpenOOD's split convention, the original train set is used for training, while the original validation set is further split into new validation and test sets.
     - For each split, an imglist file listing each image's path and class label is generated (e.g., `openood/data/benchmark_imglist/tinyimagenet/train_tin.txt`).
     - The constructed dataset is available for download [here](https://drive.google.com/file/d/1ARhAprwbTBxa5sxEFnfuzuVsZ2mMeA9W/view?usp=sharing).
-
+  - Setup: alternatively, download the full OpenOOD v1.5 benchmark datasets (including Tiny-ImageNet) into `openood/data`:
+    ```bash
+    cd openood
+    sh scripts/download/download.sh
+    ```
   - Symmetric and asymmetric label noises are synthetically injected into the clean training labels following the noise generation protocol of Tanaka et al. (D. Tanaka, D. Ikami, T. Yamasaki, K. Aizawa, Joint optimization framework for learning with noisy labels, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018, pp. 5552–5560). Example noisy imglist files: `openood/data/benchmark_imglist/tinyimagenet/train_tin_asym_0.4.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.2.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.5.txt`.
 
 
