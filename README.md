@@ -107,10 +107,10 @@ python main.py models/tcl/configs/seed0/cifar10n_aggre_r18.yml
   - Dataset construction:
     - The downloaded Tiny-ImageNet comes with class labels.
     - Images are regrouped into per-class folders based on these labels.
-    - Following OpenOOD's split convention, the original train set is used as-is for training, while the original validation set is further split into new validation and test sets.
+    - Following OpenOOD's split convention, the original train set is used for training, while the original validation set is further split into new validation and test sets.
     - For each split, an imglist file listing each image's path and class label is generated (e.g., `openood/data/benchmark_imglist/tinyimagenet/train_tin.txt`).
     - The constructed dataset is available for download [here](https://drive.google.com/file/d/1ARhAprwbTBxa5sxEFnfuzuVsZ2mMeA9W/view?usp=sharing).
-    
+
   - Symmetric and asymmetric label noises are synthetically injected into the clean training labels following the noise generation protocol of Tanaka et al. (D. Tanaka, D. Ikami, T. Yamasaki, K. Aizawa, Joint optimization framework for learning with noisy labels, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018, pp. 5552–5560). Example noisy imglist files: `openood/data/benchmark_imglist/tinyimagenet/train_tin_asym_0.4.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.2.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.5.txt`.
 
 
