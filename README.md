@@ -2,6 +2,10 @@
 
 This repository contains the implementation of our framework for robust out-of-distribution (OOD) detection under noisy labels. It integrates state-of-the-art noisy label learning (NLL) methods with post-hoc OOD detection methods and provides comprehensive evaluations on the OpenOOD benchmark across diverse noisy-label scenarios. The NLL methods in this repository are adapted from their original versions to improve OOD detection performance under noisy labels.
 
+<div align="center">
+  <img src="images/Frameworks.png" width="900" />
+</div>
+
 
 ## Repository Structure
 
