@@ -1,6 +1,6 @@
 # Robust Out-Of-Distribution Detection Under Noisy Labels
 
-This repository contains implementations and evaluations of various noise label learning(NLL) methods for handling noisy labels and out-of-distribution (OOD) detection. It integrates multiple state-of-the-art NLL approaches to provide a comprehensive framework for robust learning with noisy dataset.
+This repository contains the implementation of our framework for robust out-of-distribution (OOD) detection under noisy labels. It integrates state-of-the-art noisy label learning (NLL) methods with post-hoc OOD detection methods and provides comprehensive evaluations on the OpenOOD benchmark across diverse noisy-label scenarios. The NLL methods in this repository are adapted from their original versions to improve OOD detection performance under noisy labels.
 
 
 ## Repository Structure
@@ -26,7 +26,7 @@ Each module addresses label noise through different mechanisms, together forming
 - **ProMix**: progressive instance selection and debiased semi-supervised learning
 - **Paper**: R. Xiao, Y. Dong, H. Wang, L. Feng, R. Wu, G. Chen, J. Zhao, ProMix: Combating label noise via maximizing clean sample utility, in: Proceedings of the International Joint Conference on Artificial Intelligence, 2023, pp. 4442–4450.
 
-#### 5. **TCL (Twin Contrastive Learning)** - `tin/`
+#### 5. **TCL (Twin Contrastive Learning)** - `tcl/`
 - **TCL**: Twin contrastive learning that models representations with a Gaussian mixture and detects wrongly labeled examples as out-of-distribution samples
 - **Paper**: Z. Huang, J. Zhang, H. Shan, Twin contrastive learning with noisy labels, in: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2023.
 
@@ -89,8 +89,8 @@ python experiments/Train_cifar_prop1_energyO_mixupX.py \
 #### Running TCL on CIFAR-10N with Aggregate noisy scenarios
 
 ```bash
-cd tin
-python main.py models/tcl/configs/cifar/seed0/cifar10n_aggre_r18.yml
+cd tcl
+python main.py models/tcl/configs/seed0/cifar10n_aggre_r18.yml
 ```
 
 ## 📊 Supported Datasets and OOD Detection Methods
@@ -158,10 +158,11 @@ If you use this code in your research, please cite the relevant papers:
   year={2023}
 }
 
-@inproceedings{huang2023twin,
-  title={Twin Contrastive Learning with Noisy Labels},
+@inproceedings{TCL,
+  title={Twin contrastive learning with noisy labels},
   author={Huang, Zhizhong and Zhang, Junping and Shan, Hongming},
-  booktitle={CVPR},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={11661--11670},
   year={2023}
 }
 

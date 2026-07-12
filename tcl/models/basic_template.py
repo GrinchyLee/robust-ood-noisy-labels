@@ -24,7 +24,6 @@ class TXTImageDataset(torch.utils.data.Dataset):
     """txt 파일(경로 레이블 형식)로부터 이미지 데이터셋을 로드."""
 
     def __init__(self, txt_file, image_root, transform=None):
-        self.image_root = image_root
         self.transform = transform
         self.samples = []
         with open(txt_file) as f:
@@ -114,7 +113,7 @@ class TrainTask(object):
         parser.add_argument('--whole_dataset', action='store_true', help='use whole dataset')
         parser.add_argument('--pin_memory', action='store_true', help='pin_memory for dataloader')
         parser.add_argument('--dataset', type=str, default='cifar10', help='dataset')
-        parser.add_argument('--data_folder', type=str, default='/home/zzhuang/DATASET/clustering',
+        parser.add_argument('--data_folder', type=str, default='./data',
                             help='path to custom dataset')
         parser.add_argument('--label_file', type=str, default=None, help='path to label file (.npy or CIFAR-N .pt)')
         parser.add_argument('--noise_type', type=str, default=None,
@@ -274,12 +273,6 @@ class TrainTask(object):
         else:
             sampler = None
 
-        # if opt.num_workers > 0:
-        #     prefetch_factor = max(2, batch_size // opt.num_workers)
-        #     persistent_workers = True
-        # else:
-        #     prefetch_factor = 2
-        #     persistent_workers = False
         prefetch_factor = 2
         persistent_workers = True
         dataloader = torch.utils.data.DataLoader(
@@ -434,9 +427,6 @@ class TrainTask(object):
         # training routine
         self.progress_bar = tqdm.tqdm(total=self.iter_per_epoch * opt.epochs, disable=not self.verbose, initial=n_iter)
 
-        # if n_iter == 1:
-        #     self.psedo_labeling(n_iter)
-        #     self.test(n_iter)
         self.psedo_labeling(n_iter)
         while True:
             if hasattr(self.sampler, 'set_epoch'):
@@ -509,7 +499,6 @@ class TrainTask(object):
         min_lr = max_lr * opt.learning_eta_min
         # warmup
         if epoch < opt.warmup_epochs:
-            # lr = (max_lr - min_lr) * epoch / opt.warmup_epochs + min_lr
             lr = opt.learning_rate * epoch / opt.warmup_epochs
         else:
             lr = min_lr + 0.5 * (max_lr - min_lr) * (1 + np.cos((epoch - opt.warmup_epochs) * np.pi / opt.epochs))
@@ -520,7 +509,6 @@ class TrainTask(object):
         lr = opt.learning_rate
         epoch = n_iter / self.iter_per_epoch
         if epoch < opt.warmup_epochs:
-            # lr = (max_lr - min_lr) * epoch / opt.warmup_epochs + min_lr
             lr = opt.learning_rate * epoch / opt.warmup_epochs
         else:
             for milestone in opt.lr_decay_milestone:
@@ -563,7 +551,6 @@ class TrainTask(object):
 
         mem_features, mem_labels = extract_features(self.feature_extractor, self.memory_loader)
         if self.l2_normalize:
-            # mem_features = F.normalize(mem_features, dim=1)
             mem_features.div_(torch.linalg.norm(mem_features, dim=1, ord=2, keepdim=True))
 
         psedo_labels, cluster_centers = self.clustering(mem_features, self.num_cluster)
