@@ -97,14 +97,23 @@ python main.py models/tcl/configs/seed0/cifar10n_aggre_r18.yml
 
 ### Datasets
 - **CIFAR-N** - Real-world human annotated noisy labels from CIFAR-10/100
-  - CIFAR-10N: Aggregate, Random1, Random2, Random3, Worst, Noisy
-  - CIFAR-100N: Noisy, Random1, Random2, Random3, Worst
-- **TinyImageNet** - Dataset with symmetric/asymmetric label noises
-  - 64×64 images from 200 classes (200K images)
+  - CIFAR-10N: Clean, Aggregate, Random1, Worst
+  - CIFAR-100N: Clean, Noisy
+- **Tiny-ImageNet** - Dataset with generated symmetric/asymmetric label noises
+  - Dataset construction:
+    - The downloaded Tiny-ImageNet comes with class labels.
+    - Images are regrouped into per-class folders based on these labels.
+    - Following OpenOOD's split convention, the original train set is used as-is for training, while the original validation set is further split into new validation and test sets.
+    - For each split, an imglist file listing each image's path and class label is generated (e.g., `openood/data/benchmark_imglist/tinyimagenet/train_tin.txt`).
+    - The constructed dataset is available for download [here](https://drive.google.com/file/d/1ARhAprwbTBxa5sxEFnfuzuVsZ2mMeA9W/view?usp=sharing).
+    
+  - Symmetric and asymmetric label noises are synthetically injected into the clean training labels following the noise generation protocol of Tanaka et al. (D. Tanaka, D. Ikami, T. Yamasaki, K. Aizawa, Joint optimization framework for learning with noisy labels, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018, pp. 5552–5560). Example noisy imglist files: `openood/data/benchmark_imglist/tinyimagenet/train_tin_asym_0.4.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.2.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.5.txt`.
+
+
 
 ### Out-of-Distribution (OOD) Detection Methods
 
-The repository supports 19+ post-hoc OOD detection methods:
+The repository supports 19 post-hoc OOD detection methods:
 `msp`, `odin`, `energy`, `temp_scaling`, `ebo`, `gradnorm`, `react`, `mls`, `klm`, `vim`, `knn`, `dice`, `rankfeat`, `ash`, `she`, `mds`, `rmds`, `gram`, `mds_ensemble`, `openmax`
 
 
@@ -164,6 +173,14 @@ If you use this code in your research, please cite the relevant papers:
   booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
   pages={11661--11670},
   year={2023}
+}
+
+@inproceedings{Tanaka2018,
+  title={Joint optimization framework for learning with noisy labels},
+  author={Tanaka, Daiki and Ikami, Daiki and Yamasaki, Toshihiko and Aizawa, Kiyoharu},
+  booktitle={Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
+  pages={5552--5560},
+  year={2018}
 }
 
 @article{openoodv1.5,
