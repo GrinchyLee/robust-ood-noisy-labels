@@ -113,14 +113,15 @@ python main.py models/tcl/configs/seed0/cifar10n_aggre_r18.yml
     - For each split, an imglist file listing each image's path and class label is generated (e.g., `openood/data/benchmark_imglist/tinyimagenet/train_tin.txt`).
     - The constructed dataset is available for download [here](https://drive.google.com/file/d/1ARhAprwbTBxa5sxEFnfuzuVsZ2mMeA9W/view?usp=sharing).
 
+  - Symmetric and asymmetric label noises are synthetically injected into the clean training labels following the noise generation protocol of Tanaka et al. (D. Tanaka, D. Ikami, T. Yamasaki, K. Aizawa, Joint optimization framework for learning with noisy labels, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018, pp. 5552–5560). Example noisy imglist files: `openood/data/benchmark_imglist/tinyimagenet/train_tin_asym_0.4.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.2.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.5.txt`.
+
+
 - Setup: alternatively, download the full OpenOOD v1.5 benchmark datasets into `openood/data`. This also installs the OOD datasets (e.g., iNaturalist, NINCO, OpenImage-O, SSB-hard, Textures) used for OOD evaluation:
     ```bash
     cd openood
     sh scripts/download/download.sh
     ```
     For Tiny-ImageNet, the corresponding imglist files are already provided in this repository under `openood/data/benchmark_imglist/tinyimagenet`, so you can use them directly without additional generation.
-  - Symmetric and asymmetric label noises are synthetically injected into the clean training labels following the noise generation protocol of Tanaka et al. (D. Tanaka, D. Ikami, T. Yamasaki, K. Aizawa, Joint optimization framework for learning with noisy labels, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018, pp. 5552–5560). Example noisy imglist files: `openood/data/benchmark_imglist/tinyimagenet/train_tin_asym_0.4.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.2.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.5.txt`.
-
 
 
 ### Out-of-Distribution (OOD) Detection Methods
