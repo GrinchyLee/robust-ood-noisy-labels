@@ -103,13 +103,8 @@ python main.py models/tcl/configs/seed0/cifar10n_aggre_r18.yml
   - CIFAR-10N: Clean, Aggregate, Random1, Worst
   - CIFAR-100N: Clean, Noisy
   - The human-annotated noisy labels are from the official [CIFAR-10N/100N repository](https://github.com/UCSC-REAL/cifar-10-100n), with per-scenario labels (`CIFAR-10_human.pt`, `CIFAR-100_human.pt`) placed together with the CIFAR-10/100 data under `CIFAR-10N_100N/` at the repository root:
-    ```
-    CIFAR-10N_100N/
-    ├── cifar-10-batches-py/
-    ├── cifar-100-python/
-    ├── CIFAR-10_human.pt
-    └── CIFAR-100_human.pt
-    ```
+
+
 - **Tiny-ImageNet** - Dataset with generated symmetric/asymmetric label noises
   - Dataset construction:
     - The downloaded Tiny-ImageNet comes with class labels.
@@ -117,11 +112,13 @@ python main.py models/tcl/configs/seed0/cifar10n_aggre_r18.yml
     - Following OpenOOD's split convention, the original train set is used for training, while the original validation set is further split into new validation and test sets.
     - For each split, an imglist file listing each image's path and class label is generated (e.g., `openood/data/benchmark_imglist/tinyimagenet/train_tin.txt`).
     - The constructed dataset is available for download [here](https://drive.google.com/file/d/1ARhAprwbTBxa5sxEFnfuzuVsZ2mMeA9W/view?usp=sharing).
-  - Setup: alternatively, download the full OpenOOD v1.5 benchmark datasets (including Tiny-ImageNet) into `openood/data`:
+
+- Setup: alternatively, download the full OpenOOD v1.5 benchmark datasets into `openood/data`. This also installs the OOD datasets (e.g., iNaturalist, NINCO, OpenImage-O, SSB-hard, Textures) used for OOD evaluation:
     ```bash
     cd openood
     sh scripts/download/download.sh
     ```
+    For Tiny-ImageNet, the corresponding imglist files are already provided in this repository under `openood/data/benchmark_imglist/tinyimagenet`, so you can use them directly without additional generation.
   - Symmetric and asymmetric label noises are synthetically injected into the clean training labels following the noise generation protocol of Tanaka et al. (D. Tanaka, D. Ikami, T. Yamasaki, K. Aizawa, Joint optimization framework for learning with noisy labels, in: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2018, pp. 5552–5560). Example noisy imglist files: `openood/data/benchmark_imglist/tinyimagenet/train_tin_asym_0.4.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.2.txt`, `openood/data/benchmark_imglist/tinyimagenet/train_tin_sym_0.5.txt`.
 
 
